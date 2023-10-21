@@ -23,33 +23,47 @@ public final class LazyComplex implements Complex {
 
     @Override
     public double re() {
-        if (cartesianComplex == null) {
-            cartesianComplex = new CartesianComplex(polarComplex.re(), polarComplex.im());
-        }
-        return cartesianComplex.re();
+        return asCartesian().re();
     }
 
     @Override
     public double im() {
-        if (cartesianComplex == null) {
-            cartesianComplex = new CartesianComplex(polarComplex.re(), polarComplex.im());
-        }
-        return cartesianComplex.im();
+        return asCartesian().im();
     }
 
     @Override
     public double abs() {
-        if (polarComplex == null) {
-            polarComplex = new PolarComplex(cartesianComplex.abs(), cartesianComplex.arg());
-        }
-        return polarComplex.abs();
+        return asPolar().abs();
     }
 
     @Override
     public double arg() {
+        return asPolar().arg();
+    }
+
+    @Override
+    public Complex asCartesian() {
+        if (cartesianComplex == null) {
+            cartesianComplex = new CartesianComplex(polarComplex.re(), polarComplex.im());
+        }
+        return cartesianComplex;
+    }
+
+    @Override
+    public Complex asPolar() {
         if (polarComplex == null) {
             polarComplex = new PolarComplex(cartesianComplex.abs(), cartesianComplex.arg());
         }
-        return polarComplex.arg();
+        return polarComplex;
+    }
+
+    @Override
+    public boolean hasCartesianForm() {
+        return cartesianComplex != null;
+    }
+
+    @Override
+    public boolean hasPolarForm() {
+        return polarComplex != null;
     }
 }

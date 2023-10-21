@@ -10,4 +10,12 @@ public interface Complex {
 
     double arg();
 
+    Complex asCartesian();
+
+    Complex asPolar();
+
+    boolean hasCartesianForm();
+
+    boolean hasPolarForm();
+
 }

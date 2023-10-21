@@ -29,4 +29,24 @@ public final class CartesianComplex implements Complex {
     public double arg() {
         return Math.atan2(im, re);
     }
+
+    @Override
+    public Complex asCartesian() {
+        return this;
+    }
+
+    @Override
+    public Complex asPolar() {
+        return new PolarComplex(abs(), arg());
+    }
+
+    @Override
+    public boolean hasCartesianForm() {
+        return true;
+    }
+
+    @Override
+    public boolean hasPolarForm() {
+        return false;
+    }
 }
